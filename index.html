@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#006A4E">
     <title>Masjid Al Iman - Kemayoran, Jakarta Pusat</title>
     
-    <!-- PWA Manifest (Opsional, abaikan jika tidak menggunakan file manifest.json) -->
+    <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="138254_2.png">
     
@@ -24,7 +24,6 @@
            CSS VARIABLES & RESET
            ========================================================================== */
         :root {
-            /* Color Palette */
             --emerald-dark: #004d38;
             --emerald: #006A4E;
             --emerald-light: #00936d;
@@ -36,16 +35,13 @@
             --text-muted: #6B7280;
             --border-color: #E5E7EB;
             
-            /* Typography */
             --font-heading: 'Montserrat', sans-serif;
             --font-body: 'Poppins', sans-serif;
             
-            /* Shadows */
             --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
             --shadow-md: 0 10px 25px rgba(0, 106, 78, 0.1);
             --shadow-lg: 0 15px 35px rgba(0,0,0,0.15);
             
-            /* Transitions */
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
@@ -57,7 +53,7 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 116px; /* Disesuaikan untuk tinggi running text + navbar */
+            scroll-padding-top: 116px; /* Kompensasi untuk tinggi running text + navbar */
         }
 
         body {
@@ -305,7 +301,7 @@
         }
 
         /* ==========================================================================
-           HERO SECTION
+           HERO SECTION (DI-UPDATE UKURAN LOGO DAN TEKS)
            ========================================================================== */
         .hero {
             height: 100vh;
@@ -318,26 +314,40 @@
             justify-content: center;
             text-align: center;
             padding: 0 20px;
-            margin-top: 116px; /* Tinggi navbar (80px) + running text (36px) */
+            margin-top: 116px; 
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             animation: fadeIn 1s ease-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .hero-logo {
-            width: 120px;
-            margin: 0 auto 20px;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+            width: 250px; /* Diperbesar signifikan untuk Desktop */
+            height: auto;
+            object-fit: cover;
+            border-radius: 24px; /* Sudut membulat elegan, tidak bulat total agar proporsional */
+            border: 3px solid var(--gold);
+            margin: 0 auto 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5), 0 0 20px rgba(203, 161, 53, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
         }
 
         .hero-title {
             color: var(--bg-white);
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 800;
             margin-bottom: 15px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            text-shadow: 0 4px 15px rgba(0,0,0,0.6);
             letter-spacing: 2px;
         }
 
@@ -852,7 +862,7 @@
         }
 
         /* ==========================================================================
-           RESPONSIVE DESIGN
+           RESPONSIVE DESIGN (HP & TABLET)
            ========================================================================== */
         @media (max-width: 992px) {
             .donasi-grid {
@@ -871,8 +881,13 @@
         }
 
         @media (max-width: 768px) {
+            .hero-logo {
+                width: 180px; /* Diperbesar sangat signifikan untuk HP */
+            }
+
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 2rem; /* Diperkecil sedikit agar muat di layar hp */
+                letter-spacing: 1px;
             }
             
             .hero-subtitle {
@@ -972,7 +987,10 @@
     <section id="beranda" class="hero" style="background-image: linear-gradient(rgba(0, 42, 31, 0.8), rgba(0, 106, 78, 0.8)), url('138243_2.jpg');">
         <div class="hero-content">
             <img src="Logo7d.png" alt="Logo Masjid Al Iman" class="hero-logo">
-            <h2 class="hero-title">MASJID AL IMAN</h2>
+            
+            <!-- Perbaikan Text Wrapping: Menggunakan tag <span> agar "AL IMAN" tidak pernah dipisah -->
+            <h2 class="hero-title">MASJID <span style="white-space: nowrap;">AL IMAN</span></h2>
+            
             <p class="hero-subtitle">Pusat Ibadah, Dakwah dan Pemberdayaan Umat</p>
             <div class="hero-buttons">
                 <a href="#kegiatan" class="btn btn-primary">Lihat Kegiatan</a>
