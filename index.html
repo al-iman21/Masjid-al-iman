@@ -57,7 +57,7 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 80px;
+            scroll-padding-top: 116px; /* Disesuaikan untuk tinggi running text + navbar */
         }
 
         body {
@@ -97,6 +97,41 @@
 
         .bg-light {
             background-color: var(--bg-light);
+        }
+
+        /* ==========================================================================
+           TOP RUNNING TEXT (MARQUEE)
+           ========================================================================== */
+        .top-bar {
+            background-color: var(--gold);
+            color: var(--emerald-dark);
+            padding: 8px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1002;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+
+        .marquee-container {
+            display: flex;
+            white-space: nowrap;
+        }
+
+        .marquee-text {
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            animation: scrollText 30s linear infinite;
+            padding-left: 100%;
+        }
+
+        @keyframes scrollText {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
         }
 
         /* ==========================================================================
@@ -167,7 +202,7 @@
            ========================================================================== */
         header {
             position: fixed;
-            top: 0;
+            top: 36px; /* Memberi ruang untuk running text */
             left: 0;
             width: 100%;
             background-color: var(--bg-white);
@@ -283,7 +318,7 @@
             justify-content: center;
             text-align: center;
             padding: 0 20px;
-            margin-top: 80px;
+            margin-top: 116px; /* Tinggi navbar (80px) + running text (36px) */
         }
 
         .hero-content {
@@ -850,10 +885,10 @@
             
             .nav-menu {
                 position: fixed;
-                top: 80px;
+                top: 106px; /* Tinggi navbar + running text di HP */
                 left: -100%;
                 width: 100%;
-                height: calc(100vh - 80px);
+                height: calc(100vh - 106px);
                 background-color: var(--bg-white);
                 flex-direction: column;
                 transition: var(--transition);
@@ -896,6 +931,15 @@
     </style>
 </head>
 <body>
+
+    <!-- TOP RUNNING TEXT -->
+    <div class="top-bar">
+        <div class="marquee-container">
+            <div class="marquee-text">
+                ✨ Selamat Datang di Website Resmi Masjid Al Iman Utan Panjang ✨ Mari Bersama Memakmurkan Masjid dan Menyalurkan Amal Jariyah Anda Untuk Pembangunan Masjid ✨ Pusat Ibadah, Dakwah dan Pemberdayaan Umat ✨
+            </div>
+        </div>
+    </div>
 
     <!-- NAVBAR -->
     <header id="navbar">
@@ -1208,7 +1252,8 @@
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop;
                     const sectionHeight = section.clientHeight;
-                    if (scrollY >= (sectionTop - 150)) {
+                    // Offset ditambahkan untuk kompensasi navbar + running text
+                    if (scrollY >= (sectionTop - 180)) {
                         current = section.getAttribute('id');
                     }
                 });
@@ -1229,6 +1274,7 @@
             if (lightbox && lightboxImg) {
                 lightbox.style.display = 'block';
                 lightboxImg.src = src;
+                document.body.style.overflow = 'hidden'; // Kunci scroll layar saat gambar membesar
             }
         }
 
@@ -1236,6 +1282,7 @@
             const lightbox = document.getElementById('lightbox');
             if (lightbox) {
                 lightbox.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Kembalikan scroll layar
             }
         }
 
