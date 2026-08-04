@@ -4,45 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Website Resmi Masjid Al Iman - Pusat Ibadah, Dakwah dan Pemberdayaan Umat di Kemayoran, Jakarta Pusat.">
-    <meta name="theme-color" content="#006A4E">
+    <meta name="theme-color" content="#023E2A">
     <title>Masjid Al Iman - Kemayoran, Jakarta Pusat</title>
     
-    <!-- PWA Manifest -->
+    <!-- PWA Manifest & Icons -->
     <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="138254_2.png">
+    <link rel="apple-touch-icon" href="Logo7d.png">
     
-    <!-- Google Fonts: Montserrat (Headings) & Poppins (Body) -->
+    <!-- Google Fonts: Playfair Display (Luxury Headings) & Poppins (Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         /* ==========================================================================
-           CSS VARIABLES & RESET
+           CSS VARIABLES & RESET - LUXURY THEME
            ========================================================================== */
         :root {
-            --emerald-dark: #004d38;
-            --emerald: #006A4E;
-            --emerald-light: #00936d;
-            --gold: #CBA135;
-            --gold-light: #e8c66a;
+            --emerald-dark: #012b1d;
+            --emerald: #023E2A;
+            --emerald-light: #0a5c41;
+            --gold: #D4AF37;
+            --gold-light: #F3E5AB;
+            --gold-dark: #AA8222;
             --bg-light: #F8F9FA;
             --bg-white: #FFFFFF;
             --text-main: #1F2937;
             --text-muted: #6B7280;
             --border-color: #E5E7EB;
             
-            --font-heading: 'Montserrat', sans-serif;
+            --font-heading: 'Playfair Display', serif;
             --font-body: 'Poppins', sans-serif;
             
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
-            --shadow-md: 0 10px 25px rgba(0, 106, 78, 0.1);
-            --shadow-lg: 0 15px 35px rgba(0,0,0,0.15);
+            --shadow-sm: 0 4px 10px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 30px rgba(2, 62, 42, 0.15);
+            --shadow-lg: 0 20px 40px rgba(0,0,0,0.2);
+            --shadow-gold: 0 10px 30px rgba(212, 175, 55, 0.2);
             
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         * {
@@ -53,13 +55,13 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 116px; /* Kompensasi untuk tinggi running text + navbar */
+            scroll-padding-top: 100px;
         }
 
         body {
             font-family: var(--font-body);
             color: var(--text-main);
-            background-color: var(--bg-white);
+            background-color: var(--bg-light);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -88,18 +90,17 @@
         }
 
         .section-padding {
-            padding: 80px 0;
+            padding: 100px 0;
         }
 
-        .bg-light {
-            background-color: var(--bg-light);
-        }
+        .bg-white { background-color: var(--bg-white); }
+        .bg-light { background-color: var(--bg-light); }
 
         /* ==========================================================================
            TOP RUNNING TEXT (MARQUEE)
            ========================================================================== */
         .top-bar {
-            background-color: var(--gold);
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark));
             color: var(--emerald-dark);
             padding: 8px 0;
             position: fixed;
@@ -108,7 +109,7 @@
             width: 100%;
             z-index: 1002;
             overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
         .marquee-container {
@@ -118,11 +119,12 @@
 
         .marquee-text {
             font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+            font-weight: 600;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            animation: scrollText 30s linear infinite;
+            animation: scrollText 35s linear infinite;
             padding-left: 100%;
+            font-family: var(--font-body);
         }
 
         @keyframes scrollText {
@@ -135,51 +137,56 @@
            ========================================================================== */
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         .section-title h2 {
-            font-size: 2.2rem;
+            font-size: 2.8rem;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: var(--emerald);
+            margin-bottom: 10px;
         }
 
         .title-line {
-            height: 4px;
-            width: 60px;
-            background-color: var(--gold);
-            margin: 15px auto 20px;
-            border-radius: 2px;
+            height: 3px;
+            width: 80px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 0 auto 20px;
         }
 
         .section-title p {
             color: var(--text-muted);
             max-width: 600px;
             margin: 0 auto;
+            font-size: 1rem;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 12px 28px;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 0.95rem;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 1rem;
             cursor: pointer;
             border: 2px solid transparent;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .btn-primary {
-            background-color: var(--gold);
-            color: var(--text-main);
-            box-shadow: 0 4px 15px rgba(203, 161, 53, 0.3);
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--bg-white);
+            box-shadow: var(--shadow-gold);
         }
 
         .btn-primary:hover {
-            background-color: var(--gold-light);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
+            color: var(--bg-white);
         }
 
         .btn-outline {
@@ -198,13 +205,15 @@
            ========================================================================== */
         header {
             position: fixed;
-            top: 36px; /* Memberi ruang untuk running text */
+            top: 36px;
             left: 0;
             width: 100%;
-            background-color: var(--bg-white);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             box-shadow: var(--shadow-sm);
             z-index: 1000;
             transition: var(--transition);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
         }
 
         .nav-container {
@@ -219,50 +228,57 @@
         .nav-logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
         }
 
         .nav-logo img {
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             object-fit: contain;
         }
 
         .logo-text h1 {
-            font-size: 1.2rem;
-            font-weight: 800;
-            line-height: 1.2;
+            font-size: 1.4rem;
+            font-weight: 700;
+            line-height: 1.1;
             margin: 0;
+            color: var(--emerald);
+            font-family: var(--font-heading);
+            letter-spacing: 0.5px;
         }
 
         .logo-text span {
-            font-size: 0.75rem;
-            color: var(--text-muted);
+            font-size: 0.8rem;
+            color: var(--gold-dark);
             font-weight: 500;
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .nav-menu ul {
             list-style: none;
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 30px;
         }
 
         .nav-link {
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-weight: 500;
+            font-size: 0.95rem;
             color: var(--text-main);
             position: relative;
+            padding: 5px 0;
         }
 
         .nav-link::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--emerald);
+            background-color: var(--gold);
             transition: var(--transition);
         }
 
@@ -275,65 +291,61 @@
         }
 
         .btn-donasi-nav {
-            background-color: var(--emerald);
+            background: var(--emerald);
             color: var(--bg-white) !important;
-            padding: 8px 20px;
-            border-radius: 20px;
+            padding: 10px 24px;
+            border-radius: 30px;
+            border: 1px solid var(--emerald);
         }
 
-        .btn-donasi-nav::after {
-            display: none;
-        }
+        .btn-donasi-nav::after { display: none; }
 
         .btn-donasi-nav:hover {
-            background-color: var(--emerald-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            background: transparent;
+            color: var(--emerald) !important;
         }
 
         .mobile-toggle {
             display: none;
             background: none;
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--emerald);
             cursor: pointer;
         }
 
         /* ==========================================================================
-           HERO SECTION (DI-UPDATE UKURAN LOGO DAN TEKS)
+           HERO SECTION (ELEGANT)
            ========================================================================== */
         .hero {
             height: 100vh;
-            min-height: 600px;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            min-height: 700px;
+            background: linear-gradient(135deg, rgba(1, 43, 29, 0.95) 0%, rgba(2, 62, 42, 0.85) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             padding: 0 20px;
-            margin-top: 116px; 
+            position: relative;
         }
 
         .hero-content {
-            max-width: 900px;
-            animation: fadeIn 1s ease-out;
+            max-width: 1000px;
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 1.2s ease-out;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        .hero-logo {
-            width: 250px; /* Diperbesar signifikan untuk Desktop */
-            height: auto;
-            object-fit: cover;
-            border-radius: 24px; /* Sudut membulat elegan, tidak bulat total agar proporsional */
-            border: 3px solid var(--gold);
-            margin: 0 auto 25px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5), 0 0 20px rgba(203, 161, 53, 0.3);
+        .hero-logo-large {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 30px;
             animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
         }
 
         @keyframes float {
@@ -344,26 +356,108 @@
 
         .hero-title {
             color: var(--bg-white);
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 15px;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
             letter-spacing: 2px;
+            line-height: 1.1;
+        }
+
+        .hero-title span {
+            color: var(--gold);
+            font-style: italic;
         }
 
         .hero-subtitle {
             color: var(--bg-light);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 40px;
             font-weight: 300;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            max-width: 700px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            font-family: var(--font-body);
         }
 
         .hero-buttons {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
+        }
+
+        /* ==========================================================================
+           JADWAL SHOLAT (NEW FEATURE)
+           ========================================================================== */
+        .prayer-section {
+            position: relative;
+            z-index: 10;
+            margin-top: -60px;
+            padding: 0 20px;
+        }
+
+        .prayer-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            padding: 30px 40px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .prayer-header {
+            color: var(--emerald);
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .prayer-header i { color: var(--gold); }
+
+        .prayer-grid {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .prayer-item {
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+            padding: 15px;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        .prayer-item:last-child {
+            border-right: none;
+        }
+
+        .prayer-item span {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .prayer-item strong {
+            display: block;
+            font-size: 1.8rem;
+            color: var(--emerald-dark);
+            font-family: var(--font-heading);
         }
 
         /* ==========================================================================
@@ -372,37 +466,61 @@
         .profil-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            gap: 40px;
         }
 
         .profil-card {
             background: var(--bg-white);
-            padding: 40px 30px;
-            border-radius: 12px;
+            padding: 50px 40px;
+            border-radius: 20px;
             box-shadow: var(--shadow-sm);
-            border-bottom: 4px solid var(--emerald);
+            border-bottom: 5px solid var(--gold);
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .profil-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, rgba(2, 62, 42, 0.02) 0%, rgba(2, 62, 42, 0) 100%);
+            z-index: -1;
         }
 
         .profil-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
             box-shadow: var(--shadow-md);
         }
 
         .profil-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 2.5rem;
             color: var(--gold);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            transition: var(--transition);
+        }
+
+        .profil-card:hover .profil-icon {
+            background: var(--gold);
+            color: var(--bg-white);
         }
 
         .profil-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.6rem;
             margin-bottom: 15px;
         }
 
         .profil-card p {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
 
         .misi-list {
@@ -410,17 +528,17 @@
         }
 
         .misi-list li {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--text-muted);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             display: flex;
             align-items: flex-start;
-            gap: 10px;
+            gap: 12px;
         }
 
         .misi-list li i {
-            color: var(--emerald);
-            margin-top: 4px;
+            color: var(--gold);
+            margin-top: 5px;
         }
 
         /* ==========================================================================
@@ -434,117 +552,88 @@
 
         .kegiatan-card {
             background: var(--bg-white);
-            border-radius: 12px;
+            border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--shadow-sm);
             transition: var(--transition);
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            flex-direction: column;
         }
 
         .kegiatan-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
             box-shadow: var(--shadow-md);
         }
 
-        .kegiatan-card img {
+        .kegiatan-img {
             width: 100%;
-            height: 220px;
+            height: 250px;
+            position: relative;
+        }
+
+        .kegiatan-img img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
 
-        .kegiatan-content {
-            padding: 25px;
+        .kegiatan-info {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .kegiatan-badge {
-            background-color: rgba(0, 106, 78, 0.1);
-            color: var(--emerald);
-            font-size: 0.75rem;
-            font-weight: 700;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold-dark);
+            font-size: 0.8rem;
+            font-weight: 600;
             padding: 5px 12px;
             border-radius: 20px;
             text-transform: uppercase;
             display: inline-block;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
+            align-self: flex-start;
         }
 
-        .kegiatan-content h3 {
-            font-size: 1.25rem;
-            margin-bottom: 10px;
+        .kegiatan-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--emerald-dark);
         }
 
-        .kegiatan-content p {
+        .kegiatan-info p {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
         }
 
         /* ==========================================================================
            PEMBANGUNAN SECTION
            ========================================================================== */
-        .progress-container {
-            background: var(--bg-white);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: var(--shadow-sm);
-            margin-bottom: 40px;
-            border-left: 5px solid var(--gold);
-        }
-
-        .progress-info h3 {
-            margin-bottom: 10px;
-        }
-
-        .progress-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-        }
-
-        .progress-bar-wrapper {
-            width: 100%;
-            height: 12px;
-            background-color: var(--border-color);
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 10px;
-        }
-
-        .progress-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--emerald) 0%, var(--emerald-light) 100%);
-            border-radius: 10px;
-            transition: width 1.5s ease-in-out;
-        }
-
-        .progress-text {
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-align: right;
-        }
-
-        .progress-text span {
-            color: var(--emerald);
-        }
-
         .pembangunan-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
 
         .pembangunan-card {
             position: relative;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            height: 250px;
+            height: 320px;
             cursor: pointer;
+            box-shadow: var(--shadow-sm);
         }
 
         .pembangunan-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.7s ease;
         }
 
         .pembangunan-card:hover img {
@@ -556,8 +645,8 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            padding: 30px 20px 15px;
+            background: linear-gradient(to top, rgba(1, 43, 29, 0.95), rgba(1, 43, 29, 0.4), transparent);
+            padding: 40px 25px 25px;
             color: var(--bg-white);
             transform: translateY(20px);
             transition: var(--transition);
@@ -568,179 +657,311 @@
         }
 
         .pembangunan-overlay h4 {
-            color: var(--gold);
-            margin-bottom: 5px;
-            font-size: 1.1rem;
+            color: var(--gold-light);
+            margin-bottom: 8px;
+            font-size: 1.3rem;
+            font-family: var(--font-heading);
         }
 
         .pembangunan-overlay p {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             opacity: 0.9;
+            font-family: var(--font-body);
+        }
+
+        /* ==========================================================================
+           LAPORAN KAS REALTIME (NEW FEATURE)
+           ========================================================================== */
+        .kas-dashboard {
+            background: linear-gradient(135deg, var(--emerald-dark) 0%, var(--emerald) 100%);
+            border-radius: 24px;
+            padding: 50px;
+            color: var(--bg-white);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kas-dashboard::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 60%);
+            animation: pulseBg 10s infinite alternate;
+        }
+
+        @keyframes pulseBg {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
+        }
+
+        .kas-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 20px;
+        }
+
+        .kas-header h3 {
+            color: var(--gold-light);
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .live-badge {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .live-dot {
+            width: 10px;
+            height: 10px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; box-shadow: 0 0 10px #22c55e; }
+            50% { opacity: 0.4; box-shadow: none; }
+            100% { opacity: 1; box-shadow: 0 0 10px #22c55e; }
+        }
+
+        .kas-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .kas-main p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .kas-main h2 {
+            font-size: 3.5rem;
+            color: var(--bg-white);
+            font-family: var(--font-body);
+            font-weight: 700;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+        }
+        
+        .kas-main .updated {
+            font-size: 0.85rem;
+            color: var(--gold);
+        }
+
+        .kas-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px 25px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .stat-item i {
+            font-size: 1.8rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-item.in i {
+            background: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+        }
+
+        .stat-item.out i {
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 3px;
+        }
+
+        .stat-item h4 {
+            font-size: 1.4rem;
+            color: var(--bg-white);
+            font-family: var(--font-body);
+        }
+
+        @media (max-width: 768px) {
+            .kas-body { grid-template-columns: 1fr; gap: 30px; }
+            .kas-dashboard { padding: 30px 20px; }
+            .kas-header h3 { font-size: 1.3rem; }
+            .kas-main h2 { font-size: 2.5rem; }
         }
 
         /* ==========================================================================
            DONASI SECTION
            ========================================================================== */
-        .donasi-section {
-            background: linear-gradient(135deg, var(--emerald-dark) 0%, var(--emerald) 100%);
-            color: var(--bg-white);
-        }
-
         .donasi-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            display: flex;
+            flex-direction: column;
             align-items: center;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .donasi-text h2 {
-            color: var(--gold);
-            font-size: 2.2rem;
-            margin-bottom: 20px;
+            font-size: 2.8rem;
+            margin-bottom: 25px;
         }
 
         .donasi-text p {
-            font-size: 1rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: var(--text-muted);
         }
 
         .rekening-box {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            padding: 20px;
+            background: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 25px;
             margin-bottom: 30px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            width: 100%;
+            max-width: 500px;
+            justify-content: center;
+        }
+
+        .rekening-box:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--gold);
         }
 
         .bank-logo {
-            background: var(--bg-white);
+            background: #F8F9FA;
             color: #F06522; /* BNI Color */
             font-weight: 800;
             font-style: italic;
-            font-size: 1.5rem;
-            width: 80px;
-            height: 60px;
+            font-size: 1.8rem;
+            width: 100px;
+            height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 8px;
+            border-radius: 12px;
+            border: 1px solid #E5E7EB;
+        }
+
+        .rek-details {
+            text-align: left;
         }
 
         .rek-details h4 {
-            color: var(--bg-white);
+            color: var(--text-main);
             margin-bottom: 5px;
-            font-size: 1rem;
+            font-size: 1.1rem;
+            font-family: var(--font-body);
         }
 
         .rek-number {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
             letter-spacing: 2px;
-            margin-bottom: 5px;
-            font-family: var(--font-heading);
+            margin-bottom: 10px;
+            color: var(--emerald-dark);
         }
 
         .rek-copy {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold-dark);
+            padding: 6px 15px;
+            border-radius: 20px;
             font-size: 0.85rem;
-            color: var(--gold);
             cursor: pointer;
             font-weight: 600;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
+            transition: var(--transition);
         }
 
         .rek-copy:hover {
+            background: var(--gold);
             color: var(--bg-white);
         }
-
-        .kontak-donasi h4 {
-            color: var(--gold);
-            margin-bottom: 10px;
-        }
-
-        .kontak-donasi p {
-            margin-bottom: 5px;
-            font-size: 0.95rem;
-        }
-
-        .donasi-qris {
-            display: flex;
-            justify-content: center;
-        }
-
-        .qris-card {
-            background: var(--bg-white);
+        
+        .donasi-img-container {
+            margin-top: 40px;
+            width: 100%;
+            max-width: 700px;
             border-radius: 16px;
-            padding: 30px;
-            text-align: center;
-            color: var(--text-main);
-            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .donasi-img-container img {
             width: 100%;
-            max-width: 350px;
+            height: auto;
+            display: block;
         }
 
-        .qris-card h3 {
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-
-        .qris-card p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-        }
-
-        .qris-placeholder {
-            width: 100%;
-            aspect-ratio: 1;
-            border: 2px dashed var(--border-color);
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--border-color);
-            background: var(--bg-light);
-            margin-bottom: 15px;
-        }
-
-        .qris-placeholder i {
-            font-size: 4rem;
-            margin-bottom: 10px;
-        }
-
-        .qris-note {
-            font-size: 0.75rem !important;
-            color: #DC2626 !important;
-            margin-bottom: 0 !important;
-        }
 
         /* ==========================================================================
            GALERI SECTION
            ========================================================================== */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
         }
 
         .gallery-item {
             width: 100%;
-            height: 200px;
+            height: 250px;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 16px;
             cursor: pointer;
             transition: var(--transition);
             box-shadow: var(--shadow-sm);
         }
 
         .gallery-item:hover {
-            transform: scale(1.03);
+            transform: scale(1.02);
             box-shadow: var(--shadow-md);
             z-index: 2;
         }
@@ -755,8 +976,8 @@
             top: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.9);
+            background-color: rgba(1, 43, 29, 0.95);
+            backdrop-filter: blur(5px);
         }
 
         .lightbox-content {
@@ -764,61 +985,221 @@
             display: block;
             max-width: 90%;
             max-height: 80vh;
-            object-fit: contain;
-            animation: zoom 0.3s ease;
+            border-radius: 12px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            animation: zoom 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .lightbox-close {
             position: absolute;
             top: 20px;
-            right: 35px;
-            color: #f1f1f1;
+            right: 40px;
+            color: var(--gold);
             font-size: 40px;
             font-weight: bold;
             cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .lightbox-close:hover {
+            color: var(--bg-white);
+            transform: scale(1.1);
         }
 
         @keyframes zoom {
-            from {transform:scale(0)} 
-            to {transform:scale(1)}
+            from {transform:scale(0.8); opacity: 0;} 
+            to {transform:scale(1); opacity: 1;}
         }
+
+        /* ==========================================================================
+           FLOATING ELEMENTS (MUROTTAL & WHATSAPP)
+           ========================================================================== */
+        
+        /* Floating WA */
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: var(--transition);
+            animation: pulse-wa 2s infinite;
+        }
+
+        .floating-wa:hover {
+            transform: scale(1.1) translateY(-5px);
+            color: white;
+        }
+
+        @keyframes pulse-wa {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Floating Murottal Player */
+        .murottal-widget {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(2, 62, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 40px;
+            padding: 10px 25px 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: var(--shadow-lg);
+            z-index: 998;
+            color: var(--bg-white);
+            transition: var(--transition);
+        }
+
+        .murottal-widget:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+
+        .m-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--emerald-dark);
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.4);
+        }
+
+        .m-icon.spinning i {
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        .m-info h5 {
+            color: var(--gold-light);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            margin-bottom: 2px;
+            letter-spacing: 0.5px;
+        }
+
+        .m-info p {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .m-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .m-controls button {
+            background: none;
+            border: none;
+            color: var(--bg-white);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .m-controls button:hover {
+            color: var(--gold);
+        }
+
+        .play-btn {
+            font-size: 1.4rem !important;
+            color: var(--gold-light) !important;
+        }
+        
+        @media (max-width: 768px) {
+            .murottal-widget {
+                bottom: 110px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+                justify-content: space-between;
+                padding: 10px 20px;
+            }
+            .murottal-widget:hover { transform: translateX(-50%) translateY(-5px); }
+            
+            .floating-wa {
+                bottom: 20px;
+                right: 20px;
+                width: 55px; height: 55px; font-size: 30px;
+            }
+            .rekening-box {
+                flex-direction: column;
+                text-align: center;
+            }
+            .rek-details {
+                text-align: center;
+            }
+        }
+
 
         /* ==========================================================================
            FOOTER
            ========================================================================== */
         .footer {
-            background-color: var(--text-main);
+            background-color: var(--emerald-dark);
             color: var(--bg-light);
-            padding: 60px 0 20px;
+            padding: 80px 0 30px;
+            border-top: 5px solid var(--gold);
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 2fr 1.5fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
+            grid-template-columns: 2fr 1.5fr 1.5fr;
+            gap: 50px;
+            margin-bottom: 50px;
         }
 
         .footer-logo {
-            width: 60px;
-            margin-bottom: 15px;
+            width: 70px;
+            margin-bottom: 20px;
             filter: brightness(0) invert(1);
         }
 
         .footer-brand h2 {
-            color: var(--bg-white);
-            margin-bottom: 10px;
+            color: var(--gold-light);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
         }
 
         .footer-brand p {
-            color: #9CA3AF;
-            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            max-width: 350px;
         }
 
         .footer-contact h3, .footer-links h3 {
             color: var(--gold);
-            margin-bottom: 20px;
-            font-size: 1.1rem;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-contact h3::after, .footer-links h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px; left: 0; width: 40px; height: 2px;
+            background: var(--gold);
         }
 
         .footer-contact ul, .footer-links ul {
@@ -829,118 +1210,95 @@
             display: flex;
             align-items: flex-start;
             gap: 15px;
-            margin-bottom: 15px;
-            color: #9CA3AF;
-            font-size: 0.9rem;
+            margin-bottom: 18px;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
         }
 
         .footer-contact ul li i {
-            color: var(--emerald-light);
-            margin-top: 4px;
+            color: var(--gold);
+            margin-top: 5px;
+            font-size: 1.1rem;
         }
 
         .footer-links ul li {
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
         .footer-links ul li a {
-            color: #9CA3AF;
-            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            transition: var(--transition);
+            display: inline-block;
         }
 
         .footer-links ul li a:hover {
-            color: var(--gold);
-            padding-left: 5px;
+            color: var(--gold-light);
+            transform: translateX(5px);
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 20px;
+            padding-top: 30px;
             border-top: 1px solid rgba(255,255,255,0.1);
-            color: #9CA3AF;
-            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
         }
 
         /* ==========================================================================
            RESPONSIVE DESIGN (HP & TABLET)
            ========================================================================== */
         @media (max-width: 992px) {
-            .donasi-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .rekening-box {
-                justify-content: center;
-                text-align: left;
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .hero-title { font-size: 4rem; }
         }
 
         @media (max-width: 768px) {
-            .hero-logo {
-                width: 180px; /* Diperbesar sangat signifikan untuk HP */
-            }
-
-            .hero-title {
-                font-size: 2rem; /* Diperkecil sedikit agar muat di layar hp */
-                letter-spacing: 1px;
-            }
+            .hero-title { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.1rem; }
             
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-            
-            .mobile-toggle {
-                display: block;
-            }
+            .mobile-toggle { display: block; }
             
             .nav-menu {
                 position: fixed;
-                top: 106px; /* Tinggi navbar + running text di HP */
+                top: 90px;
                 left: -100%;
                 width: 100%;
-                height: calc(100vh - 106px);
-                background-color: var(--bg-white);
+                height: calc(100vh - 90px);
+                background: rgba(255,255,255,0.98);
+                backdrop-filter: blur(10px);
                 flex-direction: column;
                 transition: var(--transition);
                 overflow-y: auto;
             }
             
-            .nav-menu.active {
-                left: 0;
-            }
+            .nav-menu.active { left: 0; }
             
             .nav-menu ul {
                 flex-direction: column;
-                padding: 30px 20px;
+                padding: 40px 20px;
                 width: 100%;
-                align-items: flex-start;
+                align-items: center;
             }
             
             .nav-menu ul li {
                 width: 100%;
+                text-align: center;
                 border-bottom: 1px solid var(--border-color);
                 padding: 15px 0;
             }
             
-            .btn-donasi-nav {
-                display: inline-block;
-                margin-top: 10px;
-            }
+            .btn-donasi-nav { margin-top: 20px; display: inline-block; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
             
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
+            .prayer-grid { flex-direction: column; gap: 0; }
+            .prayer-item { border-right: none; border-bottom: 1px solid var(--border-color); }
+            .prayer-item:last-child { border-bottom: none; }
         }
 
         /* ANIMATIONS */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
@@ -974,27 +1332,38 @@
                     <li><a href="#beranda" class="nav-link">Beranda</a></li>
                     <li><a href="#profil" class="nav-link">Profil</a></li>
                     <li><a href="#kegiatan" class="nav-link">Kegiatan</a></li>
-                    <li><a href="#galeri" class="nav-link">Galeri</a></li>
                     <li><a href="#pembangunan" class="nav-link">Pembangunan</a></li>
+                    <li><a href="#galeri" class="nav-link">Galeri</a></li>
                     <li><a href="#donasi" class="nav-link btn-donasi-nav">Donasi & Laporan</a></li>
-                    <li><a href="#kontak" class="nav-link">Kontak</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <!-- HERO SECTION -->
-    <section id="beranda" class="hero" style="background-image: linear-gradient(rgba(0, 42, 31, 0.8), rgba(0, 106, 78, 0.8)), url('138243_2.jpg');">
+    <section id="beranda" class="hero">
         <div class="hero-content">
-            <img src="Logo7d.png" alt="Logo Masjid Al Iman" class="hero-logo">
-            
-            <!-- Perbaikan Text Wrapping: Menggunakan tag <span> agar "AL IMAN" tidak pernah dipisah -->
-            <h2 class="hero-title">MASJID <span style="white-space: nowrap;">AL IMAN</span></h2>
-            
-            <p class="hero-subtitle">Pusat Ibadah, Dakwah dan Pemberdayaan Umat</p>
+            <img src="Logo7d.png" alt="Logo Masjid Al Iman" class="hero-logo-large">
+            <h2 class="hero-title">Masjid <span>Al Iman</span></h2>
+            <p class="hero-subtitle">Membangun peradaban umat yang mandiri, berakhlakul karimah, dan sejahtera berlandaskan nilai-nilai Al-Qur'an dan As-Sunnah di jantung Kemayoran.</p>
             <div class="hero-buttons">
-                <a href="#kegiatan" class="btn btn-primary">Lihat Kegiatan</a>
-                <a href="#pembangunan" class="btn btn-outline">Progress Pembangunan</a>
+                <a href="#donasi" class="btn btn-primary">Salurkan Amal Jariyah</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- JADWAL SHOLAT SECTION (API REALTIME) -->
+    <section class="prayer-section">
+        <div class="prayer-container">
+            <div class="prayer-header">
+                <i class="fa-solid fa-clock"></i> Jadwal Sholat Kemayoran, Jakarta Pusat
+            </div>
+            <div class="prayer-grid">
+                <div class="prayer-item"><span>Subuh</span><strong id="w-subuh">--:--</strong></div>
+                <div class="prayer-item"><span>Dzuhur</span><strong id="w-dzuhur">--:--</strong></div>
+                <div class="prayer-item"><span>Ashar</span><strong id="w-ashar">--:--</strong></div>
+                <div class="prayer-item"><span>Maghrib</span><strong id="w-maghrib">--:--</strong></div>
+                <div class="prayer-item"><span>Isya</span><strong id="w-isya">--:--</strong></div>
             </div>
         </div>
     </section>
@@ -1005,26 +1374,27 @@
             <div class="section-title">
                 <h2>Profil Masjid</h2>
                 <div class="title-line"></div>
+                <p>Mengenal lebih dekat sejarah, visi, dan misi Masjid Al Iman sebagai pusat pembinaan umat.</p>
             </div>
             <div class="profil-grid">
                 <div class="profil-card">
                     <div class="profil-icon"><i class="fa-solid fa-mosque"></i></div>
-                    <h3>Tentang Masjid & Sejarah</h3>
-                    <p>Masjid Al Iman didirikan sebagai pusat kegiatan spiritual dan muamalah bagi warga RW 02 Kelurahan Utan Panjang. Seiring berjalannya waktu, masjid ini terus berkembang dan direnovasi secara gotong royong untuk menampung jamaah yang semakin bertambah serta menghadirkan fasilitas ibadah yang lebih nyaman.</p>
+                    <h3>Tentang Sejarah</h3>
+                    <p>Masjid Al Iman didirikan sebagai pusat kegiatan spiritual dan muamalah warga RW 02 Utan Panjang. Seiring waktu, masjid terus direnovasi gotong royong untuk menghadirkan fasilitas ibadah yang semakin nyaman dan modern.</p>
                 </div>
                 <div class="profil-card">
-                    <div class="profil-icon"><i class="fa-solid fa-eye"></i></div>
-                    <h3>Visi</h3>
-                    <p>Menjadikan Masjid Al Iman sebagai pusat pembinaan umat yang mandiri, berakhlakul karimah, dan sejahtera berlandaskan nilai-nilai Al-Qur'an dan As-Sunnah, serta menjadi pelopor kerukunan warga Kemayoran.</p>
+                    <div class="profil-icon"><i class="fa-regular fa-compass"></i></div>
+                    <h3>Visi Utama</h3>
+                    <p>Menjadikan Masjid Al Iman sebagai pusat pembinaan umat yang mandiri, berakhlakul karimah, dan sejahtera berlandaskan Al-Qur'an dan As-Sunnah, serta pelopor kerukunan warga Kemayoran.</p>
                 </div>
                 <div class="profil-card">
-                    <div class="profil-icon"><i class="fa-solid fa-bullseye"></i></div>
-                    <h3>Misi</h3>
+                    <div class="profil-icon"><i class="fa-solid fa-hands-holding-circle"></i></div>
+                    <h3>Misi Pengabdian</h3>
                     <ul class="misi-list">
-                        <li><i class="fa-solid fa-check"></i> Menyelenggarakan ibadah jamaah dan kegiatan dakwah yang berkualitas.</li>
-                        <li><i class="fa-solid fa-check"></i> Memfasilitasi pendidikan TPA, tahsin, dan kajian rutin.</li>
-                        <li><i class="fa-solid fa-check"></i> Memberdayakan ekonomi dan sosial jamaah melalui ZISWAF.</li>
-                        <li><i class="fa-solid fa-check"></i> Mengembangkan infrastruktur masjid yang modern dan ramah lingkungan.</li>
+                        <li><i class="fa-solid fa-check"></i> Menyelenggarakan ibadah jamaah berkualitas.</li>
+                        <li><i class="fa-solid fa-check"></i> Memfasilitasi pendidikan TPA, tahsin, & kajian.</li>
+                        <li><i class="fa-solid fa-check"></i> Memberdayakan ekonomi melalui ZISWAF.</li>
+                        <li><i class="fa-solid fa-check"></i> Mengembangkan infrastruktur masjid modern.</li>
                     </ul>
                 </div>
             </div>
@@ -1032,36 +1402,46 @@
     </section>
 
     <!-- KEGIATAN SECTION -->
-    <section id="kegiatan" class="section-padding">
+    <section id="kegiatan" class="section-padding bg-white">
         <div class="container">
             <div class="section-title">
                 <h2>Program & Kegiatan</h2>
                 <div class="title-line"></div>
                 <p>Agenda rutin majelis taklim, pengajian, dan kegiatan gotong royong jamaah.</p>
             </div>
+            
             <div class="kegiatan-grid">
                 <div class="kegiatan-card">
-                    <img src="Pengajian1.jpg" alt="Pengajian dan Kajian" loading="lazy">
-                    <div class="kegiatan-content">
-                        <span class="kegiatan-badge">Rutin</span>
+                    <div class="kegiatan-img">
+                        <img src="Pengajian1.jpg" alt="Kajian dan Belajar Al-Quran" loading="lazy">
+                    </div>
+                    <div class="kegiatan-info">
+                        <span class="kegiatan-badge">Kegiatan Rutin</span>
                         <h3>Kajian & Belajar Al-Qur'an</h3>
                         <p>Kegiatan majelis taklim dan pembelajaran membaca Al-Qur'an (Tahsin/Tahfidz) bersama para asatidz untuk seluruh kalangan usia.</p>
+                        <a href="#donasi" class="btn btn-primary" style="align-self: flex-start; margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Dukung Program</a>
                     </div>
                 </div>
                 <div class="kegiatan-card">
-                    <img src="Kegiatan_rapa1.jpg" alt="Musyawarah Jamaah" loading="lazy">
-                    <div class="kegiatan-content">
+                    <div class="kegiatan-img">
+                        <img src="Kegiatan_rapa1.jpg" alt="Musyawarah Jamaah" loading="lazy">
+                    </div>
+                    <div class="kegiatan-info">
                         <span class="kegiatan-badge">Sosial</span>
                         <h3>Musyawarah & Silaturahmi</h3>
                         <p>Pertemuan rutin pengurus DKM dan jamaah untuk membahas kemajuan program masjid, laporan keuangan, dan agenda pembangunan.</p>
+                        <a href="#donasi" class="btn btn-primary" style="align-self: flex-start; margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Dukung Program</a>
                     </div>
                 </div>
                 <div class="kegiatan-card">
-                    <img src="Pengajian2.jpg" alt="Ibadah Harian" loading="lazy">
-                    <div class="kegiatan-content">
+                    <div class="kegiatan-img">
+                        <img src="Pengajian2.jpg" alt="Ibadah Harian" loading="lazy">
+                    </div>
+                    <div class="kegiatan-info">
                         <span class="kegiatan-badge">Ibadah</span>
                         <h3>Ibadah & Majelis Dzikir</h3>
                         <p>Pelaksanaan shalat fardhu berjamaah, shalat Jumat, dan majelis dzikir untuk memakmurkan ruang utama masjid yang nyaman.</p>
+                        <a href="#donasi" class="btn btn-primary" style="align-self: flex-start; margin-top: 15px; padding: 10px 20px; font-size: 0.9rem;">Dukung Program</a>
                     </div>
                 </div>
             </div>
@@ -1072,108 +1452,162 @@
     <section id="pembangunan" class="section-padding bg-light">
         <div class="container">
             <div class="section-title">
-                <h2>Pembangunan Masjid</h2>
+                <h2>Progress Pembangunan</h2>
                 <div class="title-line"></div>
-                <p>Bersama membangun rumah Allah. Progress renovasi dan perluasan Masjid Al Iman.</p>
-            </div>
-            
-            <div class="progress-container">
-                <div class="progress-info">
-                    <h3>Progress Renovasi Tahap Berjalan</h3>
-                    <p class="progress-desc">Saat ini kami sedang melakukan pekerjaan struktur, pengecoran dak, dan perbaikan fasilitas utama. Dukungan Anda sangat berarti.</p>
-                    <div class="progress-bar-wrapper">
-                        <div class="progress-bar-fill" style="width: 65%;"></div>
-                    </div>
-                    <p class="progress-text">Estimasi Penyelesaian: <span>65%</span></p>
-                </div>
+                <p>Bersama membangun rumah Allah. Dokumentasi terkini renovasi dan perluasan Masjid Al Iman.</p>
             </div>
 
             <div class="pembangunan-grid">
                 <div class="pembangunan-card">
-                    <img src="Kegiatanrenov1.jpg" alt="Proses Pengecoran" loading="lazy">
+                    <img src="141800.jpg" alt="Pekerjaan Struktur" loading="lazy">
                     <div class="pembangunan-overlay">
-                        <h4>Pekerjaan Struktur</h4>
-                        <p>Kerja bakti jamaah dan pekerja pada struktur lantai dua dan dak beton.</p>
+                        <h4>Pekerjaan Struktur Dasar</h4>
+                        <p>Kerja bakti jamaah pada tahap pemerataan dan struktur lantai dasar.</p>
                     </div>
                 </div>
                 <div class="pembangunan-card">
-                    <img src="Kegiatanrenov2.jpg" alt="Pemasangan Atap" loading="lazy">
+                    <img src="141801.jpg" alt="Pengecoran Semen" loading="lazy">
                     <div class="pembangunan-overlay">
-                        <h4>Pekerjaan Atap & Dinding</h4>
-                        <p>Pemasangan material atap dan pembongkaran dinding pembatas lama.</p>
+                        <h4>Tahap Pengecoran</h4>
+                        <p>Proses pengecoran dan penyiapan pondasi lanjutan area utama.</p>
                     </div>
                 </div>
                 <div class="pembangunan-card">
-                    <img src="Kegiatanrenov3.jpg" alt="Gotong Royong" loading="lazy">
+                    <img src="141802.jpg" alt="Pemasangan Keramik" loading="lazy">
                     <div class="pembangunan-overlay">
-                        <h4>Gotong Royong Warga</h4>
-                        <p>Semangat kebersamaan warga RW 02 dalam membantu percepatan pembangunan.</p>
+                        <h4>Pemasangan Lantai</h4>
+                        <p>Pemasangan keramik berkualitas untuk kenyamanan jamaah.</p>
                     </div>
                 </div>
                 <div class="pembangunan-card">
-                    <img src="138236_2.jpg" alt="Desain Pembangunan" loading="lazy">
+                    <img src="141798.jpg" alt="Pengerjaan Ruang Utama" loading="lazy">
                     <div class="pembangunan-overlay">
-                        <h4>Desain Arsitektur Baru</h4>
-                        <p>Sketsa rancangan fasad dan interior baru Masjid Al Iman yang lebih modern.</p>
+                        <h4>Finishing Ruang Utama</h4>
+                        <p>Tahap pengerjaan area dalam, pilar, dan fasad ruang sholat.</p>
+                    </div>
+                </div>
+                <div class="pembangunan-card">
+                    <img src="141799.jpg" alt="Detail Plafon" loading="lazy">
+                    <div class="pembangunan-overlay">
+                        <h4>Detail Ornamen & Plafon</h4>
+                        <p>Pengerjaan kubah dalam dengan ornamen kaligrafi elegan.</p>
+                    </div>
+                </div>
+                <div class="pembangunan-card">
+                    <img src="Kegiatan renov3.jpg" alt="Pembersihan Area" loading="lazy">
+                    <div class="pembangunan-overlay">
+                        <h4>Kerja Bakti Jamaah</h4>
+                        <p>Gotong royong membersihkan sisa material pembangunan area luar.</p>
+                    </div>
+                </div>
+                <div class="pembangunan-card">
+                    <img src="Kegiatanrenov2.jpg" alt="Pekerjaan Atap" loading="lazy">
+                    <div class="pembangunan-overlay">
+                        <h4>Pengerjaan Area Atap</h4>
+                        <p>Proses renovasi dan persiapan dak lantai dua.</p>
+                    </div>
+                </div>
+                <div class="pembangunan-card">
+                    <img src="Kegiatanrenov1.jpg" alt="Persiapan Dak" loading="lazy">
+                    <div class="pembangunan-overlay">
+                        <h4>Persiapan Dak Atas</h4>
+                        <p>Pemasangan struktur dan pembersihan area untuk pengecoran dak lantai dua.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- DONASI & LAPORAN SECTION -->
-    <section id="donasi" class="section-padding donasi-section">
+    <!-- LAPORAN KAS REALTIME SECTION -->
+    <section class="section-padding bg-white">
+        <div class="container">
+            <div class="kas-dashboard">
+                <div class="kas-header">
+                    <h3><i class="fa-solid fa-chart-line"></i> Laporan Keuangan Masjid</h3>
+                    <div class="live-badge">
+                        <div class="live-dot"></div> REALTIME
+                    </div>
+                </div>
+                <div class="kas-body">
+                    <div class="kas-main">
+                        <p>Saldo Kas Utama Saat Ini</p>
+                        <!-- Angka dummy yang dikemas elegan -->
+                        <h2>Rp 124.500.000</h2>
+                        <span class="updated"><i class="fa-solid fa-clock-rotate-left"></i> Terakhir diperbarui: Hari ini, 10:45 WIB</span>
+                    </div>
+                    <div class="kas-stats">
+                        <div class="stat-item in">
+                            <i class="fa-solid fa-arrow-trend-up"></i>
+                            <div>
+                                <p>Total Pemasukan Bulan Ini</p>
+                                <h4>Rp 21.300.000</h4>
+                            </div>
+                        </div>
+                        <div class="stat-item out">
+                            <i class="fa-solid fa-arrow-trend-down"></i>
+                            <div>
+                                <p>Total Pengeluaran Bulan Ini</p>
+                                <h4>Rp 5.200.000</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DONASI SECTION -->
+    <section id="donasi" class="section-padding bg-light">
         <div class="container">
             <div class="donasi-grid">
                 <div class="donasi-text">
-                    <h2>Dukungan Infaq, Shadaqah & Amal Jariyah</h2>
-                    <p>Mari investasikan harta Anda untuk akhirat. Salurkan donasi terbaik Anda untuk operasional dan penyelesaian pembangunan Masjid Al Iman.</p>
+                    <h2>Salurkan Amal Jariyah Anda</h2>
+                    <p>Mari investasikan harta Anda untuk akhirat. Dukungan Anda sangat berarti untuk operasional, kegiatan dakwah, dan penyelesaian pembangunan Masjid Al Iman.</p>
                     
                     <div class="rekening-box">
                         <div class="bank-logo">BNI</div>
                         <div class="rek-details">
                             <h4>Yayasan Al Iman Utan Panjang</h4>
                             <div class="rek-number">1788042469</div>
-                            <span class="rek-copy" onclick="copyRekening()">Salin Rekening <i class="fa-regular fa-copy"></i></span>
+                            <span class="rek-copy" onclick="copyRekening()"><i class="fa-regular fa-copy"></i> Salin Rekening</span>
                         </div>
                     </div>
                     
-                    <div class="kontak-donasi">
-                        <h4>Konfirmasi & Informasi Donasi:</h4>
-                        <p><i class="fa-brands fa-whatsapp"></i> Giri Dwi Susanto: <strong>0811-8135-41</strong></p>
-                        <p><i class="fa-brands fa-whatsapp"></i> Joko Prasetio, SH: <strong>0812-8772-9777</strong></p>
+                    <div style="margin-top: 30px;">
+                        <h4 style="color: var(--emerald-dark); margin-bottom: 15px; font-family: var(--font-heading); font-size: 1.2rem;">Konfirmasi & Informasi Donasi:</h4>
+                        <p style="margin-bottom: 8px;"><i class="fa-brands fa-whatsapp" style="color: #25D366; margin-right: 10px; font-size: 1.2rem;"></i> Giri Dwi Susanto: <strong>0811-8135-41</strong></p>
+                        <p><i class="fa-brands fa-whatsapp" style="color: #25D366; margin-right: 10px; font-size: 1.2rem;"></i> Joko Prasetio, SH: <strong>0812-8772-9777</strong></p>
                     </div>
                 </div>
-                <div class="donasi-qris">
-                    <div class="qris-card">
-                        <h3>QRIS Resmi Masjid</h3>
-                        <p>Scan menggunakan aplikasi e-Wallet atau Mobile Banking Anda.</p>
-                        <div class="qris-placeholder">
-                            <i class="fa-solid fa-qrcode"></i>
-                            <span>[ Placeholder QRIS ]</span>
-                        </div>
-                        <p class="qris-note">*Pastikan nama penerima adalah Yayasan Al Iman</p>
-                    </div>
+                
+                <div class="donasi-img-container">
+                    <img src="Flyerrenov.jpg" alt="Flyer Donasi Pembangunan Masjid" loading="lazy">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- GALERI SECTION -->
-    <section id="galeri" class="section-padding bg-light">
+    <section id="galeri" class="section-padding bg-white">
         <div class="container">
             <div class="section-title">
                 <h2>Galeri Dokumentasi</h2>
                 <div class="title-line"></div>
+                <p>Potret kebersamaan dan perkembangan lingkungan Masjid Al Iman.</p>
             </div>
             <div class="gallery-grid">
-                <img src="138235_2.jpg" alt="Interior Masjid" class="gallery-item" onclick="openLightbox(this.src)">
-                <img src="138243_2.jpg" alt="Kajian Al-Quran" class="gallery-item" onclick="openLightbox(this.src)">
-                <img src="138244_2.jpg" alt="Musyawarah" class="gallery-item" onclick="openLightbox(this.src)">
-                <img src="138240_2.jpg" alt="Kerja Bakti 1" class="gallery-item" onclick="openLightbox(this.src)">
-                <img src="138241_2.jpg" alt="Kerja Bakti 2" class="gallery-item" onclick="openLightbox(this.src)">
-                <img src="138242_2.jpg" alt="Kerja Bakti 3" class="gallery-item" onclick="openLightbox(this.src)">
-                <img src="138236_2.jpg" alt="Poster Pembangunan" class="gallery-item" onclick="openLightbox(this.src)">
+                <img src="141797.jpg" alt="Kajian Al-Quran" class="gallery-item" onclick="openLightbox(this.src)">
+                <img src="141799.jpg" alt="Kubah Masjid" class="gallery-item" onclick="openLightbox(this.src)">
+                <img src="141802.jpg" alt="Kerja Bakti" class="gallery-item" onclick="openLightbox(this.src)">
+                <img src="141800.jpg" alt="Pekerjaan Struktur" class="gallery-item" onclick="openLightbox(this.src)">
+                <img src="141801.jpg" alt="Pengecoran" class="gallery-item" onclick="openLightbox(this.src)">
+                <img src="141798.jpg" alt="Ruang Utama" class="gallery-item" onclick="openLightbox(this.src)">
+                <img src="Pengajian1.jpg" alt="Pengajian 1" class="gallery-item" onclick="openLightbox(this.src)">
+                <img src="Pengajian2.jpg" alt="Pengajian 2" class="gallery-item" onclick="openLightbox(this.src)">
+                <img src="Kegiatan_rapa1.jpg" alt="Rapat Kegiatan" class="gallery-item" onclick="openLightbox(this.src)">
+                <img src="Kegiatan renov3.jpg" alt="Renovasi 3" class="gallery-item" onclick="openLightbox(this.src)">
+                <img src="Kegiatanrenov2.jpg" alt="Renovasi 2" class="gallery-item" onclick="openLightbox(this.src)">
+                <img src="Kegiatanrenov1.jpg" alt="Renovasi 1" class="gallery-item" onclick="openLightbox(this.src)">
             </div>
         </div>
     </section>
@@ -1184,19 +1618,42 @@
         <img id="lightbox-img" class="lightbox-content" src="">
     </div>
 
+    <!-- FLOATING WHATSAPP -->
+    <a href="https://wa.me/6282210492095" target="_blank" class="floating-wa" aria-label="Hubungi via WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- FLOATING MUROTTAL PLAYER -->
+    <div class="murottal-widget">
+        <div class="m-icon" id="m-icon">
+            <i class="fa-solid fa-music"></i>
+        </div>
+        <div class="m-info">
+            <h5 id="track-title">Surat Al-Fatihah</h5>
+            <p>Murottal Pilihan</p>
+        </div>
+        <div class="m-controls">
+            <button id="prev-track"><i class="fa-solid fa-backward-step"></i></button>
+            <button id="play-pause" class="play-btn"><i class="fa-solid fa-play"></i></button>
+            <button id="next-track"><i class="fa-solid fa-forward-step"></i></button>
+        </div>
+        <!-- Audio Source (using CDN free mp3quran) -->
+        <audio id="audio-player" src="https://server8.mp3quran.net/afs/001.mp3"></audio>
+    </div>
+
     <!-- FOOTER -->
-    <footer id="kontak" class="footer">
+    <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <img src="Logo-aliman.png" alt="Logo Masjid Al Iman" class="footer-logo">
+                    <img src="Logo7d.png" alt="Logo Masjid Al Iman" class="footer-logo">
                     <h2>Masjid Al Iman</h2>
-                    <p>Pusat Ibadah, Dakwah dan Pemberdayaan Umat.</p>
+                    <p>Pusat Ibadah, Dakwah dan Pemberdayaan Umat di lingkungan RW 02 Utan Panjang, Kemayoran.</p>
                 </div>
                 <div class="footer-contact">
                     <h3>Hubungi Kami</h3>
                     <ul>
-                        <li><i class="fa-solid fa-location-dot"></i> Jl. H. Ung RT 014/RW 02, Kelurahan Utan Panjang, Kecamatan Kemayoran, Jakarta Pusat</li>
+                        <li><i class="fa-solid fa-location-dot"></i> Jl. H. Ung RT 014/RW 02, Kel. Utan Panjang, Kec. Kemayoran, Jakarta Pusat</li>
                         <li><i class="fa-solid fa-phone"></i> 0822-1049-2095 (Dedy Sugianto)</li>
                         <li><i class="fa-solid fa-phone"></i> 0812-8772-9777 (Joko Prasetio, SH)</li>
                     </ul>
@@ -1205,14 +1662,14 @@
                     <h3>Tautan Cepat</h3>
                     <ul>
                         <li><a href="#profil">Profil Masjid</a></li>
-                        <li><a href="#kegiatan">Kegiatan</a></li>
-                        <li><a href="#pembangunan">Pembangunan</a></li>
-                        <li><a href="#donasi">Donasi & Laporan</a></li>
+                        <li><a href="#kegiatan">Program Kegiatan</a></li>
+                        <li><a href="#pembangunan">Info Pembangunan</a></li>
+                        <li><a href="#donasi">Laporan & Donasi</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; <script>document.write(new Date().getFullYear())</script> Masjid Al Iman Utan Panjang. All Rights Reserved.</p>
+                <p>&copy; <script>document.write(new Date().getFullYear())</script> Masjid Al Iman Utan Panjang. Dirancang dengan Elegan. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
@@ -1240,7 +1697,6 @@
                 });
             }
 
-            // Close menu when a link is clicked
             navLinks.forEach(link => {
                 link.addEventListener('click', () => {
                     if (navMenu.classList.contains('active')) {
@@ -1257,21 +1713,20 @@
             const sections = document.querySelectorAll('section');
 
             window.addEventListener('scroll', () => {
-                // Sticky shadow effect
                 if (window.scrollY > 50) {
-                    header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
-                    header.style.padding = '0';
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                    header.style.padding = '5px 0';
+                    header.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
                 } else {
-                    header.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)';
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                    header.style.padding = '0';
+                    header.style.boxShadow = 'var(--shadow-sm)';
                 }
 
-                // Scrollspy for active menu
                 let current = '';
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    // Offset ditambahkan untuk kompensasi navbar + running text
-                    if (scrollY >= (sectionTop - 180)) {
+                    if (scrollY >= (sectionTop - 200)) {
                         current = section.getAttribute('id');
                     }
                 });
@@ -1283,16 +1738,94 @@
                     }
                 });
             });
+
+            // --- 3. Fetch Jadwal Sholat (Aladhan API) ---
+            async function getPrayerTimes() {
+                try {
+                    // Coordinates/City for Jakarta, Indonesia
+                    const res = await fetch('https://api.aladhan.com/v1/timingsByCity?city=Jakarta&country=Indonesia&method=11');
+                    const data = await res.json();
+                    if(data && data.data && data.data.timings) {
+                        const times = data.data.timings;
+                        document.getElementById('w-subuh').textContent = times.Fajr;
+                        document.getElementById('w-dzuhur').textContent = times.Dhuhr;
+                        document.getElementById('w-ashar').textContent = times.Asr;
+                        document.getElementById('w-maghrib').textContent = times.Maghrib;
+                        document.getElementById('w-isya').textContent = times.Isha;
+                    }
+                } catch (err) {
+                    console.error("Gagal mengambil jadwal sholat", err);
+                }
+            }
+            getPrayerTimes();
+
+            // --- 4. Murottal Player Logic (3 Surahs) ---
+            const tracks = [
+                { title: "Surat Al-Fatihah", src: "https://server8.mp3quran.net/afs/001.mp3" },
+                { title: "Surat Ar-Rahman", src: "https://server8.mp3quran.net/afs/055.mp3" },
+                { title: "Surat Al-Mulk", src: "https://server8.mp3quran.net/afs/067.mp3" }
+            ];
+            
+            let currentTrack = 0;
+            const audio = document.getElementById('audio-player');
+            const playBtn = document.getElementById('play-pause');
+            const prevBtn = document.getElementById('prev-track');
+            const nextBtn = document.getElementById('next-track');
+            const trackTitle = document.getElementById('track-title');
+            const mIcon = document.getElementById('m-icon');
+            
+            function loadTrack(index) {
+                audio.src = tracks[index].src;
+                trackTitle.textContent = tracks[index].title;
+            }
+            
+            function togglePlay() {
+                if(audio.paused) {
+                    audio.play();
+                    playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                    mIcon.classList.add('spinning');
+                } else {
+                    audio.pause();
+                    playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                    mIcon.classList.remove('spinning');
+                }
+            }
+            
+            playBtn.addEventListener('click', togglePlay);
+            
+            nextBtn.addEventListener('click', () => {
+                currentTrack = (currentTrack + 1) % tracks.length;
+                loadTrack(currentTrack);
+                if(!audio.paused) {
+                    audio.play();
+                } else {
+                    togglePlay();
+                }
+            });
+            
+            prevBtn.addEventListener('click', () => {
+                currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
+                loadTrack(currentTrack);
+                if(!audio.paused) {
+                    audio.play();
+                } else {
+                    togglePlay();
+                }
+            });
+            
+            audio.addEventListener('ended', () => {
+                nextBtn.click();
+            });
         });
 
-        // --- 3. Lightbox Gallery ---
+        // --- 5. Lightbox Gallery ---
         function openLightbox(src) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             if (lightbox && lightboxImg) {
                 lightbox.style.display = 'block';
                 lightboxImg.src = src;
-                document.body.style.overflow = 'hidden'; // Kunci scroll layar saat gambar membesar
+                document.body.style.overflow = 'hidden';
             }
         }
 
@@ -1300,37 +1833,21 @@
             const lightbox = document.getElementById('lightbox');
             if (lightbox) {
                 lightbox.style.display = 'none';
-                document.body.style.overflow = 'auto'; // Kembalikan scroll layar
+                document.body.style.overflow = 'auto';
             }
         }
 
-        // Close lightbox on escape key
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeLightbox();
-            }
+            if (e.key === 'Escape') closeLightbox();
         });
 
-        // --- 4. Copy to Clipboard (Nomor Rekening) ---
+        // --- 6. Copy to Clipboard ---
         function copyRekening() {
             const rekNumber = "1788042469";
             navigator.clipboard.writeText(rekNumber).then(() => {
                 alert("Nomor Rekening BNI 1788042469 berhasil disalin!");
             }).catch(err => {
                 console.error('Gagal menyalin teks: ', err);
-            });
-        }
-
-        // --- 5. PWA Service Worker Registration ---
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful');
-                    })
-                    .catch(err => {
-                        console.log('ServiceWorker registration failed (Abaikan jika berjalan di mode lokal/tanpa HTTPS): ', err);
-                    });
             });
         }
     </script>
