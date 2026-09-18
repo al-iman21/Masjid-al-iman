@@ -18,6 +18,11 @@
     
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Firebase Realtime Database -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
     
     <style>
         /* ==========================================================================
@@ -820,11 +825,84 @@
             font-family: var(--font-body);
         }
 
+        /* ==========================================================================
+           FITUR TAMBAHAN: LAPORAN TERBUKA (IFRAME)
+           ========================================================================== */
+        .laporan-terbuka-wrapper {
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .laporan-terbuka-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .laporan-terbuka-header h4 {
+            color: var(--gold-light);
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-fullscreen {
+            padding: 8px 20px;
+            font-size: 0.85rem;
+            border-radius: 30px;
+            border: 1px solid var(--gold-light);
+            color: var(--gold-light);
+            background: transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-fullscreen:hover {
+            background: var(--gold-light);
+            color: var(--emerald-dark);
+        }
+
+        .iframe-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--bg-light);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
         @media (max-width: 768px) {
             .kas-body { grid-template-columns: 1fr; gap: 30px; }
             .kas-dashboard { padding: 30px 20px; }
             .kas-header h3 { font-size: 1.3rem; }
             .kas-main h2 { font-size: 2.5rem; }
+            .laporan-terbuka-header { flex-direction: column; align-items: flex-start; }
+            .iframe-container { height: 350px; }
         }
 
         /* ==========================================================================
@@ -1301,6 +1379,133 @@
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
+    
+        /* ==========================================================================
+           FIREBASE REALTIME FINANCE REPORT
+           ========================================================================== */
+        .firebase-report-status {
+            margin: 18px 0 0;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: #eef8f4;
+            border: 1px solid #cfe8dc;
+            color: #245b47;
+            font-size: .86rem;
+            font-weight: 500;
+        }
+        .firebase-report-status.error {
+            background: #fff4f4;
+            border-color: #f1caca;
+            color: #9b3030;
+        }
+        .kas-rekening-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 22px;
+        }
+        .rekening-live-card {
+            padding: 18px 20px;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            background: #fff;
+            box-shadow: var(--shadow-sm);
+        }
+        .rekening-live-card span {
+            display: block;
+            font-size: .84rem;
+            color: var(--text-muted);
+            margin-bottom: 7px;
+        }
+        .rekening-live-card strong {
+            display: block;
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            color: var(--emerald-dark);
+        }
+        .firebase-transaksi-wrapper {
+            margin-top: 24px;
+        }
+        .firebase-transaksi-wrapper .laporan-terbuka-header {
+            align-items: center;
+        }
+        .laporan-terbuka-header small {
+            display: block;
+            margin-top: 3px;
+            color: var(--text-muted);
+            font-size: .78rem;
+        }
+        .firebase-readonly {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 10px;
+            border-radius: 999px;
+            background: #eef8f4;
+            color: #16734f;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .3px;
+            white-space: nowrap;
+        }
+        .table-responsive-firebase {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .firebase-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 680px;
+            font-size: .86rem;
+        }
+        .firebase-table th {
+            padding: 12px 13px;
+            text-align: left;
+            background: #f4f7f5;
+            color: var(--emerald-dark);
+            font-weight: 700;
+            border-bottom: 1px solid var(--border-color);
+            white-space: nowrap;
+        }
+        .firebase-table td {
+            padding: 12px 13px;
+            border-bottom: 1px solid #edf0ee;
+            vertical-align: top;
+        }
+        .firebase-table tr:hover td {
+            background: #fafcfb;
+        }
+        .firebase-kind-in {
+            color: #16834f;
+            font-weight: 700;
+        }
+        .firebase-kind-out {
+            color: #bd3b3b;
+            font-weight: 700;
+        }
+        .firebase-amount {
+            text-align: right;
+            white-space: nowrap;
+            font-weight: 700;
+        }
+        .firebase-empty {
+            text-align: center;
+            padding: 30px 15px !important;
+            color: var(--text-muted);
+        }
+        .firebase-footer-note {
+            padding: 12px 14px;
+            color: var(--text-muted);
+            font-size: .78rem;
+            line-height: 1.5;
+        }
+        @media (max-width: 800px) {
+            .kas-rekening-grid { grid-template-columns: 1fr; }
+            .rekening-live-card strong { font-size: 1.2rem; }
+            .firebase-readonly { font-size: .66rem; padding: 6px 8px; }
+        }
+
     </style>
 </head>
 <body>
@@ -1459,35 +1664,35 @@
 
             <div class="pembangunan-grid">
                 <div class="pembangunan-card">
-                    <img src="Gotongroyong1.jpg" alt="Pekerjaan Struktur" loading="lazy">
+                    <img src="141800.jpg" alt="Pekerjaan Struktur" loading="lazy">
                     <div class="pembangunan-overlay">
                         <h4>Pekerjaan Struktur Dasar</h4>
                         <p>Kerja bakti jamaah pada tahap pemerataan dan struktur lantai dasar.</p>
                     </div>
                 </div>
                 <div class="pembangunan-card">
-                    <img src="Gotongroyong2.jpg" alt="Pengecoran Semen" loading="lazy">
+                    <img src="141801.jpg" alt="Pengecoran Semen" loading="lazy">
                     <div class="pembangunan-overlay">
                         <h4>Tahap Pengecoran</h4>
                         <p>Proses pengecoran dan penyiapan pondasi lanjutan area utama.</p>
                     </div>
                 </div>
                 <div class="pembangunan-card">
-                    <img src="Gotongroyong.jpg" alt="Pemasangan Keramik" loading="lazy">
+                    <img src="141802.jpg" alt="Pemasangan Keramik" loading="lazy">
                     <div class="pembangunan-overlay">
                         <h4>Pemasangan Lantai</h4>
                         <p>Pemasangan keramik berkualitas untuk kenyamanan jamaah.</p>
                     </div>
                 </div>
                 <div class="pembangunan-card">
-                    <img src="Interiormasjid2.jpg" alt="Pengerjaan Ruang Utama" loading="lazy">
+                    <img src="141798.jpg" alt="Pengerjaan Ruang Utama" loading="lazy">
                     <div class="pembangunan-overlay">
                         <h4>Finishing Ruang Utama</h4>
                         <p>Tahap pengerjaan area dalam, pilar, dan fasad ruang sholat.</p>
                     </div>
                 </div>
                 <div class="pembangunan-card">
-                    <img src="Interiormasjid-aliman.jpg" alt="Detail Plafon" loading="lazy">
+                    <img src="141799.jpg" alt="Detail Plafon" loading="lazy">
                     <div class="pembangunan-overlay">
                         <h4>Detail Ornamen & Plafon</h4>
                         <p>Pengerjaan kubah dalam dengan ornamen kaligrafi elegan.</p>
@@ -1519,37 +1724,87 @@
     </section>
 
     <!-- LAPORAN KAS REALTIME SECTION -->
-    <section class="section-padding bg-white">
+    <section id="laporan-kas" class="section-padding bg-white">
         <div class="container">
             <div class="kas-dashboard">
                 <div class="kas-header">
                     <h3><i class="fa-solid fa-chart-line"></i> Laporan Keuangan Masjid</h3>
-                    <div class="live-badge">
-                        <div class="live-dot"></div> REALTIME
+                    <div class="live-badge" id="firebase-live-badge">
+                        <div class="live-dot"></div> <span id="firebase-live-text">MENGHUBUNGKAN...</span>
                     </div>
                 </div>
+
+                <div id="firebase-report-status" class="firebase-report-status" aria-live="polite">
+                    <i class="fa-solid fa-cloud"></i> Menghubungkan ke laporan keuangan realtime...
+                </div>
+
                 <div class="kas-body">
                     <div class="kas-main">
                         <p>Saldo Kas Utama Saat Ini</p>
-                        <!-- Angka dummy yang dikemas elegan -->
-                        <h2>Rp 124.500.000</h2>
-                        <span class="updated"><i class="fa-solid fa-clock-rotate-left"></i> Terakhir diperbarui: Hari ini, 10:45 WIB</span>
+                        <h2 id="kas-total-saldo">Rp 0</h2>
+                        <span class="updated"><i class="fa-solid fa-clock-rotate-left"></i> <span id="kas-last-update">Menunggu data Firebase</span></span>
                     </div>
                     <div class="kas-stats">
                         <div class="stat-item in">
                             <i class="fa-solid fa-arrow-trend-up"></i>
                             <div>
                                 <p>Total Pemasukan Bulan Ini</p>
-                                <h4>Rp 21.300.000</h4>
+                                <h4 id="kas-total-masuk-bulan">Rp 0</h4>
                             </div>
                         </div>
                         <div class="stat-item out">
                             <i class="fa-solid fa-arrow-trend-down"></i>
                             <div>
                                 <p>Total Pengeluaran Bulan Ini</p>
-                                <h4>Rp 5.200.000</h4>
+                                <h4 id="kas-total-keluar-bulan">Rp 0</h4>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="kas-rekening-grid">
+                    <div class="rekening-live-card umum">
+                        <span><i class="fa-solid fa-wallet"></i> Kas Umum</span>
+                        <strong id="saldo-umum">Rp 0</strong>
+                    </div>
+                    <div class="rekening-live-card soskem">
+                        <span><i class="fa-solid fa-hand-holding-heart"></i> Kas Sosial & Kematian</span>
+                        <strong id="saldo-soskem">Rp 0</strong>
+                    </div>
+                    <div class="rekening-live-card renovasi">
+                        <span><i class="fa-solid fa-hammer"></i> Kas Renovasi</span>
+                        <strong id="saldo-renovasi">Rp 0</strong>
+                    </div>
+                </div>
+
+                <div class="laporan-terbuka-wrapper firebase-transaksi-wrapper">
+                    <div class="laporan-terbuka-header">
+                        <div>
+                            <h4><i class="fa-solid fa-table-list"></i> Rincian Transaksi</h4>
+                            <small id="jumlah-transaksi-online">0 transaksi tersimpan di Firebase</small>
+                        </div>
+                        <span class="firebase-readonly"><i class="fa-solid fa-eye"></i> LIVE READ-ONLY</span>
+                    </div>
+                    <div class="table-responsive-firebase">
+                        <table class="firebase-table">
+                            <thead>
+                                <tr>
+                                    <th>Tanggal</th>
+                                    <th>Rekening</th>
+                                    <th>Jenis</th>
+                                    <th>Uraian</th>
+                                    <th>Nominal</th>
+                                </tr>
+                            </thead>
+                            <tbody id="firebase-transaksi-body">
+                                <tr>
+                                    <td colspan="5" class="firebase-empty">Mengambil data dari Firebase...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="firebase-footer-note">
+                        <i class="fa-solid fa-circle-info"></i> Data laporan ditampilkan langsung dari Firebase Realtime Database dan diperbarui otomatis saat ada perubahan.
                     </div>
                 </div>
             </div>
@@ -1575,7 +1830,8 @@
                     
                     <div style="margin-top: 30px;">
                         <h4 style="color: var(--emerald-dark); margin-bottom: 15px; font-family: var(--font-heading); font-size: 1.2rem;">Konfirmasi & Informasi Donasi:</h4>
-                        <p style="margin-bottom: 8px;"><i class="fa-brands fa-whatsapp" style="color: #25D366; margin-right: 10px; font-size: 1.2rem;"></i> Deddy Sugianto: <strong>0822-1049-2095</strong></p>
+                        <p style="margin-bottom: 8px;"><i class="fa-brands fa-whatsapp" style="color: #25D366; margin-right: 10px; font-size: 1.2rem;"></i> Giri Dwi Susanto: <strong>0811-8135-41</strong></p>
+                        <p><i class="fa-brands fa-whatsapp" style="color: #25D366; margin-right: 10px; font-size: 1.2rem;"></i> Joko Prasetio, SH: <strong>0812-8772-9777</strong></p>
                     </div>
                 </div>
                 
@@ -1595,7 +1851,12 @@
                 <p>Potret kebersamaan dan perkembangan lingkungan Masjid Al Iman.</p>
             </div>
             <div class="gallery-grid">
-
+                <img src="141797.jpg" alt="Kajian Al-Quran" class="gallery-item" onclick="openLightbox(this.src)">
+                <img src="141799.jpg" alt="Kubah Masjid" class="gallery-item" onclick="openLightbox(this.src)">
+                <img src="141802.jpg" alt="Kerja Bakti" class="gallery-item" onclick="openLightbox(this.src)">
+                <img src="141800.jpg" alt="Pekerjaan Struktur" class="gallery-item" onclick="openLightbox(this.src)">
+                <img src="141801.jpg" alt="Pengecoran" class="gallery-item" onclick="openLightbox(this.src)">
+                <img src="141798.jpg" alt="Ruang Utama" class="gallery-item" onclick="openLightbox(this.src)">
                 <img src="Pengajian1.jpg" alt="Pengajian 1" class="gallery-item" onclick="openLightbox(this.src)">
                 <img src="Pengajian2.jpg" alt="Pengajian 2" class="gallery-item" onclick="openLightbox(this.src)">
                 <img src="Kegiatan_rapa1.jpg" alt="Rapat Kegiatan" class="gallery-item" onclick="openLightbox(this.src)">
@@ -1640,7 +1901,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <img src="Logo-aliman.png" alt="Logo Masjid Al Iman" class="footer-logo">
+                    <img src="Logo7d.png" alt="Logo Masjid Al Iman" class="footer-logo">
                     <h2>Masjid Al Iman</h2>
                     <p>Pusat Ibadah, Dakwah dan Pemberdayaan Umat di lingkungan RW 02 Utan Panjang, Kemayoran.</p>
                 </div>
@@ -1648,9 +1909,8 @@
                     <h3>Hubungi Kami</h3>
                     <ul>
                         <li><i class="fa-solid fa-location-dot"></i> Jl. H. Ung RT 014/RW 02, Kel. Utan Panjang, Kec. Kemayoran, Jakarta Pusat</li>
-                        <li><i class="fa-solid fa-phone"></i> 0812-8772-9777 (KETUA DKM)</li>
-                        <li><i class="fa-solid fa-phone"></i> 0822-1049-2095 (SEKRETARIS)</li>
-                        <li><i class="fa-solid fa-phone"></i> 0878-5801-4706 (BENDAHARA)</li>
+                        <li><i class="fa-solid fa-phone"></i> 0822-1049-2095 (Dedy Sugianto)</li>
+                        <li><i class="fa-solid fa-phone"></i> 0812-8772-9777 (Joko Prasetio, SH)</li>
                     </ul>
                 </div>
                 <div class="footer-links">
@@ -1671,8 +1931,170 @@
 
     <!-- JAVASCRIPT -->
     <script>
+        // =====================================================================
+        // FIREBASE CONFIGURATION - MASJID AL-IMAN
+        // =====================================================================
+        const FIREBASE_CONFIG = {
+            apiKey: "AIzaSyAvGxcoE6ek_-sCEcWMV4Tw3-BrYzuVkpM",
+            authDomain: "kas-masjid-al-iman.firebaseapp.com",
+            databaseURL: "https://kas-masjid-al-iman-default-rtdb.firebaseio.com",
+            projectId: "kas-masjid-al-iman",
+            storageBucket: "kas-masjid-al-iman.firebasestorage.app",
+            messagingSenderId: "958437841916",
+            appId: "1:958437841916:web:fc0bd2dbc39d0d7413f079"
+        };
+
+        let firebaseReady = false;
+        let firebaseTransactions = [];
+
+        function formatRupiah(value) {
+            const number = Number(value) || 0;
+            return 'Rp ' + new Intl.NumberFormat('id-ID').format(number);
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function normalizeTransaction(id, raw) {
+            const tx = raw || {};
+            return {
+                id: tx.id || id || '',
+                tanggal: tx.tanggal || tx.date || '',
+                rekening: tx.rekening || tx.account || 'Umum',
+                jenis: tx.jenis || tx.arus || tx.type || '',
+                nominal: Number(tx.nominal ?? tx.amount ?? 0) || 0,
+                uraian: tx.uraian || tx.keterangan || tx.description || ''
+            };
+        }
+
+        function setFirebaseStatus(message, isError = false) {
+            const el = document.getElementById('firebase-report-status');
+            const badge = document.getElementById('firebase-live-text');
+            if (el) {
+                el.classList.toggle('error', isError);
+                el.innerHTML = isError
+                    ? '<i class="fa-solid fa-circle-exclamation"></i> ' + escapeHtml(message)
+                    : '<i class="fa-solid fa-cloud"></i> ' + escapeHtml(message);
+            }
+            if (badge) badge.textContent = isError ? 'OFFLINE' : 'REALTIME';
+        }
+
+        function calculateFinance(transactions) {
+            const balances = { Umum: 0, Soskem: 0, Renovasi: 0 };
+            let monthIn = 0;
+            let monthOut = 0;
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth() + 1;
+
+            transactions.forEach(tx => {
+                const amount = Number(tx.nominal) || 0;
+                const rekening = balances.hasOwnProperty(tx.rekening) ? tx.rekening : 'Umum';
+                const isIn = String(tx.jenis).toLowerCase() === 'masuk' || String(tx.jenis).toLowerCase() === 'in';
+                const isOut = String(tx.jenis).toLowerCase() === 'keluar' || String(tx.jenis).toLowerCase() === 'out';
+
+                if (isIn) balances[rekening] += amount;
+                if (isOut) balances[rekening] -= amount;
+
+                if (tx.tanggal) {
+                    const parts = String(tx.tanggal).split('-');
+                    if (parts.length >= 2) {
+                        const txYear = Number(parts[0]);
+                        const txMonth = Number(parts[1]);
+                        if (txYear === year && txMonth === month) {
+                            if (isIn) monthIn += amount;
+                            if (isOut) monthOut += amount;
+                        }
+                    }
+                }
+            });
+
+            const totalBalance = balances.Umum + balances.Soskem + balances.Renovasi;
+            return { balances, monthIn, monthOut, totalBalance };
+        }
+
+        function renderFinance(transactions) {
+            const result = calculateFinance(transactions);
+
+            document.getElementById('kas-total-saldo').textContent = formatRupiah(result.totalBalance);
+            document.getElementById('kas-total-masuk-bulan').textContent = formatRupiah(result.monthIn);
+            document.getElementById('kas-total-keluar-bulan').textContent = formatRupiah(result.monthOut);
+            document.getElementById('saldo-umum').textContent = formatRupiah(result.balances.Umum);
+            document.getElementById('saldo-soskem').textContent = formatRupiah(result.balances.Soskem);
+            document.getElementById('saldo-renovasi').textContent = formatRupiah(result.balances.Renovasi);
+            document.getElementById('jumlah-transaksi-online').textContent = transactions.length + ' transaksi tersimpan di Firebase';
+            document.getElementById('kas-last-update').textContent = 'Terakhir diperbarui: ' + new Date().toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' }) + ' WIB';
+
+            const body = document.getElementById('firebase-transaksi-body');
+            const sorted = [...transactions].sort((a, b) => {
+                const da = new Date((a.tanggal || '') + 'T00:00:00').getTime() || 0;
+                const db = new Date((b.tanggal || '') + 'T00:00:00').getTime() || 0;
+                return db - da || String(b.id).localeCompare(String(a.id));
+            });
+
+            if (!sorted.length) {
+                body.innerHTML = '<tr><td colspan="5" class="firebase-empty">Belum ada transaksi di Firebase.</td></tr>';
+                return;
+            }
+
+            // Public report: show latest 50 transactions.
+            body.innerHTML = sorted.slice(0, 50).map(tx => {
+                const isIn = String(tx.jenis).toLowerCase() === 'masuk' || String(tx.jenis).toLowerCase() === 'in';
+                const jenisClass = isIn ? 'firebase-kind-in' : 'firebase-kind-out';
+                const jenisLabel = isIn ? 'Masuk' : 'Keluar';
+                return `<tr>
+                    <td>${escapeHtml(tx.tanggal || '-')}</td>
+                    <td>${escapeHtml(tx.rekening || 'Umum')}</td>
+                    <td class="${jenisClass}">${jenisLabel}</td>
+                    <td>${escapeHtml(tx.uraian || '-')}</td>
+                    <td class="firebase-amount">${formatRupiah(tx.nominal)}</td>
+                </tr>`;
+            }).join('');
+        }
+
+        function startFirebaseRealtime() {
+            if (!window.firebase) {
+                setFirebaseStatus('Firebase SDK tidak termuat. Periksa koneksi internet.', true);
+                return;
+            }
+
+            try {
+                if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
+                const auth = firebase.auth();
+                const db = firebase.database();
+
+                // Rules require auth != null, so the public website also signs in anonymously.
+                auth.signInAnonymously()
+                    .then(() => {
+                        firebaseReady = true;
+                        setFirebaseStatus('Terhubung ke Firebase Realtime Database. Laporan diperbarui otomatis.');
+
+                        db.ref('masjidAlIman/transaksi').on('value', snapshot => {
+                            const value = snapshot.val() || {};
+                            firebaseTransactions = Object.entries(value).map(([id, raw]) => normalizeTransaction(id, raw));
+                            renderFinance(firebaseTransactions);
+                        }, error => {
+                            console.error('Firebase transaksi read error:', error);
+                            setFirebaseStatus('Gagal membaca data transaksi: ' + (error.message || 'Permission denied'), true);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Firebase anonymous auth error:', error);
+                        setFirebaseStatus('Login Firebase gagal: ' + (error.message || error.code || 'unknown error'), true);
+                    });
+            } catch (error) {
+                console.error('Firebase initialization error:', error);
+                setFirebaseStatus('Firebase gagal diinisialisasi: ' + error.message, true);
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            
             // --- 1. Mobile Menu Toggle ---
             const mobileToggle = document.getElementById('mobile-toggle');
             const navMenu = document.getElementById('nav-menu');
@@ -1694,11 +2116,13 @@
 
             navLinks.forEach(link => {
                 link.addEventListener('click', () => {
-                    if (navMenu.classList.contains('active')) {
+                    if (navMenu && navMenu.classList.contains('active')) {
                         navMenu.classList.remove('active');
-                        const icon = mobileToggle.querySelector('i');
-                        icon.classList.remove('fa-xmark');
-                        icon.classList.add('fa-bars');
+                        const icon = mobileToggle ? mobileToggle.querySelector('i') : null;
+                        if (icon) {
+                            icon.classList.remove('fa-xmark');
+                            icon.classList.add('fa-bars');
+                        }
                     }
                 });
             });
@@ -1708,39 +2132,36 @@
             const sections = document.querySelectorAll('section');
 
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.style.background = 'rgba(255, 255, 255, 0.98)';
-                    header.style.padding = '5px 0';
-                    header.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
-                } else {
-                    header.style.background = 'rgba(255, 255, 255, 0.95)';
-                    header.style.padding = '0';
-                    header.style.boxShadow = 'var(--shadow-sm)';
+                if (header) {
+                    if (window.scrollY > 50) {
+                        header.style.background = 'rgba(255, 255, 255, 0.98)';
+                        header.style.padding = '5px 0';
+                        header.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+                    } else {
+                        header.style.background = 'rgba(255, 255, 255, 0.95)';
+                        header.style.padding = '0';
+                        header.style.boxShadow = 'var(--shadow-sm)';
+                    }
                 }
 
                 let current = '';
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop;
-                    if (scrollY >= (sectionTop - 200)) {
-                        current = section.getAttribute('id');
-                    }
+                    if (scrollY >= (sectionTop - 200)) current = section.getAttribute('id');
                 });
 
                 navLinks.forEach(link => {
                     link.classList.remove('active');
-                    if (link.getAttribute('href').includes(current)) {
-                        link.classList.add('active');
-                    }
+                    if (link.getAttribute('href').includes(current)) link.classList.add('active');
                 });
             });
 
             // --- 3. Fetch Jadwal Sholat (Aladhan API) ---
             async function getPrayerTimes() {
                 try {
-                    // Coordinates/City for Jakarta, Indonesia
                     const res = await fetch('https://api.aladhan.com/v1/timingsByCity?city=Jakarta&country=Indonesia&method=11');
                     const data = await res.json();
-                    if(data && data.data && data.data.timings) {
+                    if (data && data.data && data.data.timings) {
                         const times = data.data.timings;
                         document.getElementById('w-subuh').textContent = times.Fajr;
                         document.getElementById('w-dzuhur').textContent = times.Dhuhr;
@@ -1749,18 +2170,17 @@
                         document.getElementById('w-isya').textContent = times.Isha;
                     }
                 } catch (err) {
-                    console.error("Gagal mengambil jadwal sholat", err);
+                    console.error('Gagal mengambil jadwal sholat', err);
                 }
             }
             getPrayerTimes();
 
             // --- 4. Murottal Player Logic (3 Surahs) ---
             const tracks = [
-                { title: "Surat Al-Fatihah", src: "https://server8.mp3quran.net/afs/001.mp3" },
-                { title: "Surat Ar-Rahman", src: "https://server8.mp3quran.net/afs/055.mp3" },
-                { title: "Surat Al-Mulk", src: "https://server8.mp3quran.net/afs/067.mp3" }
+                { title: 'Surat Al-Fatihah', src: 'https://server8.mp3quran.net/afs/001.mp3' },
+                { title: 'Surat Ar-Rahman', src: 'https://server8.mp3quran.net/afs/055.mp3' },
+                { title: 'Surat Al-Mulk', src: 'https://server8.mp3quran.net/afs/067.mp3' }
             ];
-            
             let currentTrack = 0;
             const audio = document.getElementById('audio-player');
             const playBtn = document.getElementById('play-pause');
@@ -1768,15 +2188,16 @@
             const nextBtn = document.getElementById('next-track');
             const trackTitle = document.getElementById('track-title');
             const mIcon = document.getElementById('m-icon');
-            
+
             function loadTrack(index) {
+                if (!audio) return;
                 audio.src = tracks[index].src;
-                trackTitle.textContent = tracks[index].title;
+                if (trackTitle) trackTitle.textContent = tracks[index].title;
             }
-            
             function togglePlay() {
-                if(audio.paused) {
-                    audio.play();
+                if (!audio || !playBtn || !mIcon) return;
+                if (audio.paused) {
+                    audio.play().catch(err => console.warn('Audio tidak dapat diputar otomatis:', err));
                     playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
                     mIcon.classList.add('spinning');
                 } else {
@@ -1785,35 +2206,26 @@
                     mIcon.classList.remove('spinning');
                 }
             }
-            
-            playBtn.addEventListener('click', togglePlay);
-            
-            nextBtn.addEventListener('click', () => {
+            if (playBtn) playBtn.addEventListener('click', togglePlay);
+            if (nextBtn) nextBtn.addEventListener('click', () => {
                 currentTrack = (currentTrack + 1) % tracks.length;
                 loadTrack(currentTrack);
-                if(!audio.paused) {
-                    audio.play();
-                } else {
-                    togglePlay();
-                }
+                if (audio && !audio.paused) audio.play().catch(() => {});
+                else togglePlay();
             });
-            
-            prevBtn.addEventListener('click', () => {
+            if (prevBtn) prevBtn.addEventListener('click', () => {
                 currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
                 loadTrack(currentTrack);
-                if(!audio.paused) {
-                    audio.play();
-                } else {
-                    togglePlay();
-                }
+                if (audio && !audio.paused) audio.play().catch(() => {});
+                else togglePlay();
             });
-            
-            audio.addEventListener('ended', () => {
-                nextBtn.click();
-            });
+            if (audio) audio.addEventListener('ended', () => { if (nextBtn) nextBtn.click(); });
+
+            // --- 5. Start Firebase Realtime Report ---
+            startFirebaseRealtime();
         });
 
-        // --- 5. Lightbox Gallery ---
+        // --- 6. Lightbox Gallery ---
         function openLightbox(src) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
@@ -1823,7 +2235,6 @@
                 document.body.style.overflow = 'hidden';
             }
         }
-
         function closeLightbox() {
             const lightbox = document.getElementById('lightbox');
             if (lightbox) {
@@ -1831,18 +2242,16 @@
                 document.body.style.overflow = 'auto';
             }
         }
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeLightbox();
-        });
-
-        // --- 6. Copy to Clipboard ---
+        // --- 7. Copy to Clipboard ---
         function copyRekening() {
-            const rekNumber = "1788042469";
+            const rekNumber = '1788042469';
             navigator.clipboard.writeText(rekNumber).then(() => {
-                alert("Nomor Rekening BNI 1788042469 berhasil disalin!");
+                alert('Nomor Rekening BNI 1788042469 berhasil disalin!');
             }).catch(err => {
                 console.error('Gagal menyalin teks: ', err);
+                alert('Nomor rekening: ' + rekNumber);
             });
         }
     </script>
